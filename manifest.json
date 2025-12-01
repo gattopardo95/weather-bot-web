@@ -1,0 +1,21 @@
+{
+  "name": "Yugoslav Meteorological Bureau - London Weather",
+  "short_name": "Meteo Bureau",
+  "description": "London weather forecast from the Yugoslav Meteorological Bureau, Est. 1978",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E8DCC4",
+  "theme_color": "#8B4513",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

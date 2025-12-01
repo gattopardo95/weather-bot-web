@@ -1,0 +1,381 @@
+/* Yugoslav Meteorological Bureau, 1978 - Retro Aesthetic */
+
+:root {
+  /* Vibrant Retro Palette */
+  --burnt-orange: #CC5500;
+  --mustard-yellow: #D4A017;
+  --faded-red: #8B2500;
+  --olive-green: #556B2F;
+  --rust-brown: #8B4513;
+  --cream: #F5E6D3;
+  --dark-brown: #3E2723;
+  --paper-beige: #E8DCC4;
+
+  /* Typography */
+  --font-display: 'Special Elite', cursive;
+  --font-mono: 'Courier Prime', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-mono);
+  background: var(--paper-beige);
+  color: var(--dark-brown);
+  line-height: 1.6;
+
+  /* Faded paper texture */
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.bureau-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, var(--burnt-orange) 0%, var(--faded-red) 100%);
+  border: 6px solid var(--dark-brown);
+  box-shadow:
+    0 8px 0 var(--rust-brown),
+    0 8px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.bureau-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.stamp-effect {
+  position: relative;
+  z-index: 1;
+}
+
+.cyrillic-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  color: var(--cream);
+  text-shadow:
+    3px 3px 0 var(--dark-brown),
+    6px 6px 10px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--paper-beige);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.date-stamp {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: var(--mustard-yellow);
+  border: 3px solid var(--dark-brown);
+  display: inline-block;
+  transform: rotate(-2deg);
+  box-shadow: 0 4px 0 var(--dark-brown);
+  position: relative;
+  z-index: 1;
+}
+
+.date-stamp span {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark-brown);
+}
+
+/* Loading & Error States */
+.loading, .error {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--cream);
+  border: 4px solid var(--rust-brown);
+  margin: 40px 0;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid var(--paper-beige);
+  border-top-color: var(--burnt-orange);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p, .error p {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--rust-brown);
+}
+
+/* Commentary Box */
+.commentary-box {
+  background: var(--cream);
+  border: 6px solid var(--olive-green);
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 6px 0 var(--rust-brown);
+  position: relative;
+}
+
+.stamp-header {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--burnt-orange);
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 3px dashed var(--olive-green);
+  letter-spacing: 3px;
+}
+
+.commentary-text {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--dark-brown);
+  white-space: pre-line;
+}
+
+.commentary-text p {
+  margin-bottom: 15px;
+}
+
+/* Time Grid */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.time-card {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--paper-beige) 100%);
+  border: 5px solid var(--rust-brown);
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 6px 0 var(--dark-brown);
+}
+
+.cyrillic-label {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--burnt-orange);
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.label-english {
+  font-size: 0.9rem;
+  color: var(--olive-green);
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+/* Analog Gauges */
+.gauge-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.analog-gauge {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+.gauge-arc {
+  fill: none;
+  stroke: var(--rust-brown);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.gauge-needle {
+  stroke: var(--faded-red);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transform-origin: 100px 100px;
+  transition: transform 0.5s ease-out;
+}
+
+.gauge-center {
+  fill: var(--dark-brown);
+}
+
+.temp-display, .value-display {
+  margin-top: 15px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--faded-red);
+}
+
+.temp-value, .value {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.feels-like {
+  font-size: 0.9rem;
+  color: var(--olive-green);
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.description {
+  font-size: 1rem;
+  color: var(--dark-brown);
+  margin-top: 15px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.rain-indicator {
+  margin-top: 10px;
+  padding: 8px;
+  background: var(--mustard-yellow);
+  border: 2px solid var(--rust-brown);
+  font-weight: 700;
+  color: var(--dark-brown);
+  display: inline-block;
+}
+
+.rain-indicator.no-rain {
+  background: var(--olive-green);
+  color: var(--cream);
+}
+
+/* Details Grid */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.detail-card {
+  background: var(--cream);
+  border: 4px solid var(--olive-green);
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 0 var(--rust-brown);
+}
+
+.detail-card h4 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.gauge-container.small .analog-gauge {
+  max-width: 150px;
+}
+
+.gauge-container.small .value-display {
+  font-size: 1.2rem;
+}
+
+.gauge-container.small .value {
+  font-size: 2rem;
+}
+
+.sun-info, .range-info {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: var(--dark-brown);
+  font-weight: 700;
+}
+
+.sun-info p, .range-info p {
+  margin: 10px 0;
+}
+
+/* Future Modules */
+.future-modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.future-card {
+  background: var(--paper-beige);
+  border: 4px dashed var(--rust-brown);
+  padding: 30px;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.future-card h4 {
+  font-size: 1.5rem;
+  color: var(--olive-green);
+  margin-bottom: 5px;
+}
+
+.coming-soon {
+  margin-top: 15px;
+  font-style: italic;
+  color: var(--rust-brown);
+}
+
+/* Footer */
+.bureau-footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--dark-brown);
+  color: var(--cream);
+  border-top: 6px solid var(--burnt-orange);
+  margin-top: 60px;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cyrillic-title {
+    font-size: 2rem;
+  }
+
+  .time-grid, .details-grid, .future-modules {
+    grid-template-columns: 1fr;
+  }
+
+  .bureau-header {
+    padding: 20px;
+  }
+
+  .commentary-box {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МЕТЕОРОЛОГИЧЕСКОЕ БЮРО | London Weather Service</title>
+  <meta name="description" content="Yugoslav Meteorological Bureau - London Weather Forecast">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#8B4513">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="bureau-header">
+      <div class="stamp-effect">
+        <h1 class="cyrillic-title">МЕТЕОРОЛОГИЧЕСКОЕ БЮРО</h1>
+        <h2 class="subtitle">London Weather Service</h2>
+      </div>
+      <div class="date-stamp">
+        <span id="forecast-date">Loading...</span>
+      </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Consulting the Yugoslav weather archives...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="error" class="error" style="display: none;">
+      <p>Comrade, the weather data is temporarily unavailable. Perhaps the pigeons got lost?</p>
+    </div>
+
+    <!-- Main Content -->
+    <main id="content" style="display: none;">
+
+      <!-- Yugoslav Commentary -->
+      <section class="commentary-box">
+        <div class="stamp-header">ПРОГНОЗ</div>
+        <div id="commentary" class="commentary-text"></div>
+      </section>
+
+      <!-- Time of Day Breakdown -->
+      <section class="time-grid">
+
+        <div class="time-card">
+          <h3 class="cyrillic-label">УТРО</h3>
+          <p class="label-english">Morning</p>
+          <div class="gauge-container">
+            <svg class="analog-gauge" viewBox="0 0 200 120">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
+              <line id="morning-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <circle cx="100" cy="100" r="5" class="gauge-center" />
+            </svg>
+            <div class="temp-display">
+              <span id="morning-temp" class="temp-value">--</span>°C
+            </div>
+          </div>
+          <p class="feels-like">Feels like <span id="morning-feels">--</span>°C</p>
+          <p id="morning-desc" class="description">--</p>
+          <p id="morning-rain" class="rain-indicator"></p>
+        </div>
+
+        <div class="time-card">
+          <h3 class="cyrillic-label">ДЕНЬ</h3>
+          <p class="label-english">Afternoon</p>
+          <div class="gauge-container">
+            <svg class="analog-gauge" viewBox="0 0 200 120">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
+              <line id="afternoon-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <circle cx="100" cy="100" r="5" class="gauge-center" />
+            </svg>
+            <div class="temp-display">
+              <span id="afternoon-temp" class="temp-value">--</span>°C
+            </div>
+          </div>
+          <p id="afternoon-desc" class="description">--</p>
+          <p id="afternoon-rain" class="rain-indicator"></p>
+        </div>
+
+        <div class="time-card">
+          <h3 class="cyrillic-label">ВЕЧЕР</h3>
+          <p class="label-english">Evening</p>
+          <div class="gauge-container">
+            <svg class="analog-gauge" viewBox="0 0 200 120">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
+              <line id="evening-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <circle cx="100" cy="100" r="5" class="gauge-center" />
+            </svg>
+            <div class="temp-display">
+              <span id="evening-temp" class="temp-value">--</span>°C
+            </div>
+          </div>
+          <p id="evening-desc" class="description">--</p>
+          <p id="evening-rain" class="rain-indicator"></p>
+        </div>
+
+      </section>
+
+      <!-- Additional Details -->
+      <section class="details-grid">
+
+        <div class="detail-card">
+          <h4 class="cyrillic-label">ВЕТЕР</h4>
+          <p class="label-english">Wind</p>
+          <div class="gauge-container small">
+            <svg class="analog-gauge" viewBox="0 0 200 120">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
+              <line id="wind-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <circle cx="100" cy="100" r="5" class="gauge-center" />
+            </svg>
+            <div class="value-display">
+              <span id="wind" class="value">--</span> km/h
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-card">
+          <h4 class="cyrillic-label">ВЛАЖНОСТЬ</h4>
+          <p class="label-english">Humidity</p>
+          <div class="gauge-container small">
+            <svg class="analog-gauge" viewBox="0 0 200 120">
+              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
+              <line id="humidity-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <circle cx="100" cy="100" r="5" class="gauge-center" />
+            </svg>
+            <div class="value-display">
+              <span id="humidity" class="value">--</span>%
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-card sun-times">
+          <h4 class="cyrillic-label">СОЛНЦЕ</h4>
+          <p class="label-english">Sun</p>
+          <div class="sun-info">
+            <p>↑ <span id="sunrise">--:--</span></p>
+            <p>↓ <span id="sunset">--:--</span></p>
+          </div>
+        </div>
+
+        <div class="detail-card temp-range">
+          <h4 class="cyrillic-label">ТЕМПЕРАТУРА</h4>
+          <p class="label-english">Range</p>
+          <div class="range-info">
+            <p>High: <span id="high-temp">--</span>°C</p>
+            <p>Low: <span id="low-temp">--</span>°C</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Future Modules (Coming Soon) -->
+      <section class="future-modules">
+        <div class="future-card">
+          <h4 class="cyrillic-label">ПРИЛИВЫ</h4>
+          <p class="label-english">Tides</p>
+          <p class="coming-soon">Coming soon...</p>
+        </div>
+
+        <div class="future-card">
+          <h4 class="cyrillic-label">СЛОВО ДНЯ</h4>
+          <p class="label-english">Word of the Day</p>
+          <p class="coming-soon">Coming soon...</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bureau-footer">
+      <p>Метеорологическое Бюро • Est. 1978 • London Service</p>
+    </footer>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
