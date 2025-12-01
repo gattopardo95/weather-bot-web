@@ -98,51 +98,54 @@ function renderForecast(forecast) {
 
   // Morning
   document.getElementById('morning-temp').textContent = Math.round(forecast.morning_temp)
-  document.getElementById('morning-feels').textContent = Math.round(forecast.morning_feels_like)
   document.getElementById('morning-desc').textContent = forecast.morning_description
-  setGaugeNeedle('morning-needle', forecast.morning_temp, -10, 30)
 
   if (forecast.morning_rain > 0) {
-    document.getElementById('morning-rain').textContent = `Rain: ${Math.round(forecast.morning_rain)}mm`
+    document.getElementById('morning-rain').textContent = `${Math.round(forecast.morning_rain)}mm`
     document.getElementById('morning-rain').classList.remove('no-rain')
+    document.getElementById('morning-rain').style.display = 'block'
   } else {
-    document.getElementById('morning-rain').textContent = 'No rain'
+    document.getElementById('morning-rain').textContent = 'Dry'
     document.getElementById('morning-rain').classList.add('no-rain')
+    document.getElementById('morning-rain').style.display = 'block'
   }
 
   // Afternoon
   document.getElementById('afternoon-temp').textContent = Math.round(forecast.afternoon_temp)
   document.getElementById('afternoon-desc').textContent = forecast.afternoon_description
-  setGaugeNeedle('afternoon-needle', forecast.afternoon_temp, -10, 30)
 
   if (forecast.afternoon_rain > 0) {
-    document.getElementById('afternoon-rain').textContent = `Rain: ${Math.round(forecast.afternoon_rain)}mm`
+    document.getElementById('afternoon-rain').textContent = `${Math.round(forecast.afternoon_rain)}mm`
     document.getElementById('afternoon-rain').classList.remove('no-rain')
+    document.getElementById('afternoon-rain').style.display = 'block'
   } else {
-    document.getElementById('afternoon-rain').textContent = 'No rain'
+    document.getElementById('afternoon-rain').textContent = 'Dry'
     document.getElementById('afternoon-rain').classList.add('no-rain')
+    document.getElementById('afternoon-rain').style.display = 'block'
   }
 
   // Evening
   document.getElementById('evening-temp').textContent = Math.round(forecast.evening_temp)
   document.getElementById('evening-desc').textContent = forecast.evening_description
-  setGaugeNeedle('evening-needle', forecast.evening_temp, -10, 30)
 
   if (forecast.evening_rain > 0) {
-    document.getElementById('evening-rain').textContent = `Rain: ${Math.round(forecast.evening_rain)}mm`
+    document.getElementById('evening-rain').textContent = `${Math.round(forecast.evening_rain)}mm`
     document.getElementById('evening-rain').classList.remove('no-rain')
+    document.getElementById('evening-rain').style.display = 'block'
   } else {
-    document.getElementById('evening-rain').textContent = 'No rain'
+    document.getElementById('evening-rain').textContent = 'Dry'
     document.getElementById('evening-rain').classList.add('no-rain')
+    document.getElementById('evening-rain').style.display = 'block'
   }
+
+  // Daily average temperature for the single gauge
+  const avgTemp = (forecast.morning_temp + forecast.afternoon_temp + forecast.evening_temp) / 3
+  document.getElementById('avg-temp').textContent = Math.round(avgTemp)
+  setGaugeNeedle('temp-needle', avgTemp, -10, 30)
 
   // Wind
   document.getElementById('wind').textContent = Math.round(forecast.wind)
   setGaugeNeedle('wind-needle', forecast.wind, 0, 50)
-
-  // Humidity
-  document.getElementById('humidity').textContent = Math.round(forecast.humidity)
-  setGaugeNeedle('humidity-needle', forecast.humidity, 0, 100)
 
   // Sunrise/Sunset
   document.getElementById('sunrise').textContent = forecast.sunrise

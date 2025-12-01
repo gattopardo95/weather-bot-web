@@ -54,59 +54,59 @@
 
       <!-- Time of Day Breakdown -->
       <section class="time-grid">
-
         <div class="time-card">
-          <h3 class="cyrillic-label">УТРО</h3>
-          <p class="label-english">Morning</p>
+          <!-- Time periods list -->
+          <div class="time-periods">
+            <div class="time-period">
+              <div class="time-period-label">
+                <h3 class="cyrillic-label">УТРО</h3>
+                <p class="label-english">Morning</p>
+              </div>
+              <div class="time-period-data">
+                <div class="period-temp"><span id="morning-temp">--</span>°C</div>
+                <div class="period-desc" id="morning-desc">--</div>
+                <div id="morning-rain" class="rain-indicator"></div>
+              </div>
+            </div>
+
+            <div class="time-period">
+              <div class="time-period-label">
+                <h3 class="cyrillic-label">ДЕНЬ</h3>
+                <p class="label-english">Afternoon</p>
+              </div>
+              <div class="time-period-data">
+                <div class="period-temp"><span id="afternoon-temp">--</span>°C</div>
+                <div class="period-desc" id="afternoon-desc">--</div>
+                <div id="afternoon-rain" class="rain-indicator"></div>
+              </div>
+            </div>
+
+            <div class="time-period">
+              <div class="time-period-label">
+                <h3 class="cyrillic-label">ВЕЧЕР</h3>
+                <p class="label-english">Evening</p>
+              </div>
+              <div class="time-period-data">
+                <div class="period-temp"><span id="evening-temp">--</span>°C</div>
+                <div class="period-desc" id="evening-desc">--</div>
+                <div id="evening-rain" class="rain-indicator"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Single gauge for temperature range -->
           <div class="gauge-container">
             <svg class="analog-gauge" viewBox="0 0 200 120">
               <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
-              <line id="morning-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
+              <line id="temp-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
               <circle cx="100" cy="100" r="5" class="gauge-center" />
             </svg>
             <div class="temp-display">
-              <span id="morning-temp" class="temp-value">--</span>°C
+              <span id="avg-temp" class="temp-value">--</span>°C
             </div>
+            <p class="feels-like">Daily Average</p>
           </div>
-          <p class="feels-like">Feels like <span id="morning-feels">--</span>°C</p>
-          <p id="morning-desc" class="description">--</p>
-          <p id="morning-rain" class="rain-indicator"></p>
         </div>
-
-        <div class="time-card">
-          <h3 class="cyrillic-label">ДЕНЬ</h3>
-          <p class="label-english">Afternoon</p>
-          <div class="gauge-container">
-            <svg class="analog-gauge" viewBox="0 0 200 120">
-              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
-              <line id="afternoon-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
-              <circle cx="100" cy="100" r="5" class="gauge-center" />
-            </svg>
-            <div class="temp-display">
-              <span id="afternoon-temp" class="temp-value">--</span>°C
-            </div>
-          </div>
-          <p id="afternoon-desc" class="description">--</p>
-          <p id="afternoon-rain" class="rain-indicator"></p>
-        </div>
-
-        <div class="time-card">
-          <h3 class="cyrillic-label">ВЕЧЕР</h3>
-          <p class="label-english">Evening</p>
-          <div class="gauge-container">
-            <svg class="analog-gauge" viewBox="0 0 200 120">
-              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
-              <line id="evening-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
-              <circle cx="100" cy="100" r="5" class="gauge-center" />
-            </svg>
-            <div class="temp-display">
-              <span id="evening-temp" class="temp-value">--</span>°C
-            </div>
-          </div>
-          <p id="evening-desc" class="description">--</p>
-          <p id="evening-rain" class="rain-indicator"></p>
-        </div>
-
       </section>
 
       <!-- Additional Details -->
@@ -123,21 +123,6 @@
             </svg>
             <div class="value-display">
               <span id="wind" class="value">--</span> km/h
-            </div>
-          </div>
-        </div>
-
-        <div class="detail-card">
-          <h4 class="cyrillic-label">ВЛАЖНОСТЬ</h4>
-          <p class="label-english">Humidity</p>
-          <div class="gauge-container small">
-            <svg class="analog-gauge" viewBox="0 0 200 120">
-              <path d="M 20 100 A 80 80 0 0 1 180 100" class="gauge-arc" />
-              <line id="humidity-needle" x1="100" y1="100" x2="100" y2="40" class="gauge-needle" />
-              <circle cx="100" cy="100" r="5" class="gauge-center" />
-            </svg>
-            <div class="value-display">
-              <span id="humidity" class="value">--</span>%
             </div>
           </div>
         </div>
